@@ -1,0 +1,4 @@
+.idea
+*.docx
+cmake-build-debug/
+*.asm
