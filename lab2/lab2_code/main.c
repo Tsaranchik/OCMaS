@@ -2,6 +2,8 @@
 #include <stdio.h>
 
 int main() {
+    SetConsoleOutputCP(CP_UTF8); //Устанавливаем кодировку вывода
+
     UINT deviceCount; //Количество устройств ввода
     PRAWINPUTDEVICELIST pRawInputDeviceList; //Список устройств ввода
 
@@ -48,6 +50,8 @@ int main() {
 
                 //Выводим информацию об устройстве, т.е. Vendor ID и Product ID
             else {
+                printf("Полный ID мыши: %s\n", deviceName);
+
                 printf("Vendor ID и Product ID мыши: ");
                 for (int j = 8; j < 25; ++j)
                     printf("%c", deviceName[j] == '&' ? ' ' : deviceName[j]);
@@ -60,8 +64,6 @@ int main() {
             free(pRawInputDeviceList);
         }
     }
-
-    SetConsoleOutputCP(CP_UTF8); //Устанавливаем кодировку вывода
 
     //Получаем системную информацию о мыши, в данном случае количество кнопок мыши и наличие колеса мыши
     //GetSystemMetrics - функция, которая получает информацию из системного реестра Windows, однако
@@ -109,7 +111,7 @@ int main() {
             break;
         }
 
-        //Задержка в 200 милисекунд, чтобы не перегружать процессор
+        //Задержка в 200 миллисекунд, чтобы не перегружать процессор
         Sleep(200);
     }
 
